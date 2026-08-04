@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Login | BOOK STORE</title>
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial, Helvetica, sans-serif;
+        }
+
+        body{
+            background:linear-gradient(135deg,#1e3c72,#2a5298);
+            height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+        }
+
+        .container{
+            width:400px;
+            background:white;
+            padding:40px;
+            border-radius:15px;
+            box-shadow:0 10px 25px rgba(0,0,0,.3);
+        }
+
+        h2{
+            text-align:center;
+            color:#2c3e50;
+            margin-bottom:30px;
+        }
+
+        .input-group{
+            margin-bottom:20px;
+        }
+
+        .input-group label{
+            display:block;
+            margin-bottom:8px;
+            font-weight:bold;
+        }
+
+        .input-group input{
+            width:100%;
+            padding:12px;
+            border:1px solid #ccc;
+            border-radius:8px;
+            outline:none;
+            font-size:16px;
+        }
+
+        .input-group input:focus{
+            border-color:#3498db;
+        }
+
+        button{
+            width:100%;
+            padding:12px;
+            border:none;
+            background:#3498db;
+            color:white;
+            border-radius:8px;
+            font-size:18px;
+            cursor:pointer;
+        }
+
+        button:hover{
+            background:#2980b9;
+        }
+
+        .links{
+            margin-top:20px;
+            text-align:center;
+        }
+
+        .links a{
+            text-decoration:none;
+            color:#3498db;
+            display:block;
+            margin-top:10px;
+        }
+
+        .links a:hover{
+            text-decoration:underline;
+        }
+
+        .home-link{
+            text-align:center;
+            margin-top:20px;
+        }
+
+        .home-link a{
+            text-decoration:none;
+            color:#555;
+        }
+
+    </style>
+
+</head>
+<body>
+
+<div class="container">
+
+<h2>User Login</h2>
+
+<form method="POST" action="/user/login">
+
+<div class="input-group">
+<label>Username</label>
+<input type="text"
+       name="username"
+       placeholder="Enter Username"
+       required>
+</div>
+
+<div class="input-group">
+<label>Password</label>
+<input type="password"
+       name="password"
+       placeholder="Enter Password"
+       required>
+</div>
+
+<button type="submit">
+Login
+</button>
+
+</form>
+
+<div class="links">
+
+<a href="/forgot/password">
+Forgot Password?
+</a>
+
+<a href="/user/signup">
+Create New Account
+</a>
+
+</div>
+
+<div class="home-link">
+
+<a href="/">
+⬅ Back to Home
+</a>
+
+</div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manage Books | BOOK STORE</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+    background:#f4f6f9;
+}
+
+header{
+    background:#2c3e50;
+    color:white;
+    padding:15px 40px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+header h2{
+    color:#f1c40f;
+}
+
+header a{
+    color:white;
+    text-decoration:none;
+    background:#3498db;
+    padding:10px 20px;
+    border-radius:5px;
+}
+
+.container{
+    width:95%;
+    margin:30px auto;
+}
+
+.title{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+}
+
+.title h1{
+    color:#2c3e50;
+}
+
+.search-box input{
+    width:300px;
+    padding:10px;
+    border:1px solid #ccc;
+    border-radius:5px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    background:white;
+    box-shadow:0 5px 15px rgba(0,0,0,.15);
+}
+
+table th{
+    background:#3498db;
+    color:white;
+    padding:15px;
+}
+
+table td{
+    padding:15px;
+    text-align:center;
+    border-bottom:1px solid #ddd;
+}
+
+table tr:hover{
+    background:#f9f9f9;
+}
+
+img{
+    width:70px;
+    height:90px;
+    object-fit:cover;
+    border-radius:5px;
+}
+
+.edit{
+    background:#27ae60;
+    color:white;
+    padding:8px 15px;
+    border-radius:5px;
+    text-decoration:none;
+}
+
+.delete{
+    background:#e74c3c;
+    color:white;
+    padding:8px 15px;
+    border-radius:5px;
+    text-decoration:none;
+}
+
+.edit:hover{
+    background:#219150;
+}
+
+.delete:hover{
+    background:#c0392b;
+}
+
+.back{
+    margin-top:25px;
+    text-align:center;
+}
+
+.back a{
+    text-decoration:none;
+    color:#3498db;
+    font-weight:bold;
+}
+
+</style>
+
+</head>
+<body>
+
+<header>
+
+<h2>📚 BOOK STORE</h2>
+
+<a href="/admin/dashboard">Dashboard</a>
+
+</header>
+
+<div class="container">
+
+<div class="title">
+
+<h1>Manage Books</h1>
+
+<div class="search-box">
+
+<input
+type="text"
+placeholder="Search Book...">
+
+</div>
+
+</div>
+
+<table>
+
+<tr>
+
+<th>ID</th>
+
+<th>Image</th>
+
+<th>Title</th>
+
+<th>Author</th>
+
+<th>Category</th>
+
+<th>Price</th>
+
+<th>Stock</th>
+
+<th>Edit</th>
+
+<th>Delete</th>
+
+</tr>
+
+<tr>
+
+<td>1</td>
+
+<td>
+
+<img src="{{ url_for('static', filename='images/python.jpg') }}">
+
+</td>
+
+<td>Python Programming</td>
+
+<td>John Smith</td>
+
+<td>Programming</td>
+
+<td>₹499</td>
+
+<td>20</td>
+
+<td>
+
+<a href="#" class="edit">
+
+Edit
+
+</a>
+
+</td>
+
+<td>
+
+<a href="#" class="delete">
+
+Delete
+
+</a>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>2</td>
+
+<td>
+
+<img src="{{ url_for('static', filename='images/flask.jpg') }}">
+
+</td>
+
+<td>Flask Development</td>
+
+<td>Miguel Grinberg</td>
+
+<td>Web Development</td>
+
+<td>₹699</td>
+
+<td>15</td>
+
+<td>
+
+<a href="#" class="edit">
+
+Edit
+
+</a>
+
+</td>
+
+<td>
+
+<a href="#" class="delete">
+
+Delete
+
+</a>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>3</td>
+
+<td>
+
+<img src="{{ url_for('static', filename='images/sql.jpg') }}">
+
+</td>
+
+<td>SQL Database</td>
+
+<td>James Lee</td>
+
+<td>Database</td>
+
+<td>₹599</td>
+
+<td>30</td>
+
+<td>
+
+<a href="#" class="edit">
+
+Edit
+
+</a>
+
+</td>
+
+<td>
+
+<a href="#" class="delete">
+
+Delete
+
+</a>
+
+</td>
+
+</tr>
+
+</table>
+
+<div class="back">
+
+<a href="/admin/dashboard">
+
+⬅ Back to Dashboard
+
+</a>
+
+</div>
+
+</div>
+
+</body>
+</html>

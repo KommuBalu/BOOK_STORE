@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login | BOOK STORE</title>
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial, Helvetica, sans-serif;
+        }
+
+        body{
+            height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            background:linear-gradient(135deg,#141E30,#243B55);
+        }
+
+        .login-box{
+            width:400px;
+            background:#fff;
+            padding:40px;
+            border-radius:15px;
+            box-shadow:0 15px 30px rgba(0,0,0,.4);
+        }
+
+        .icon{
+            font-size:70px;
+            text-align:center;
+            margin-bottom:10px;
+        }
+
+        h2{
+            text-align:center;
+            margin-bottom:30px;
+            color:#2c3e50;
+        }
+
+        .input-group{
+            margin-bottom:20px;
+        }
+
+        .input-group label{
+            display:block;
+            margin-bottom:8px;
+            font-weight:bold;
+            color:#333;
+        }
+
+        .input-group input{
+            width:100%;
+            padding:12px;
+            border:1px solid #ccc;
+            border-radius:8px;
+            outline:none;
+            font-size:16px;
+        }
+
+        .input-group input:focus{
+            border-color:#007BFF;
+        }
+
+        button{
+            width:100%;
+            padding:13px;
+            border:none;
+            background:#007BFF;
+            color:white;
+            font-size:18px;
+            border-radius:8px;
+            cursor:pointer;
+        }
+
+        button:hover{
+            background:#0056b3;
+        }
+
+        .footer{
+            text-align:center;
+            margin-top:20px;
+        }
+
+        .footer a{
+            text-decoration:none;
+            color:#007BFF;
+            font-weight:bold;
+        }
+
+        .footer a:hover{
+            text-decoration:underline;
+        }
+
+        .show-password{
+            margin-top:10px;
+            font-size:14px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="login-box">
+
+<div class="icon">
+📚
+</div>
+
+<h2>Admin Login</h2>
+
+<form action="/admin/login" method="POST">
+
+<div class="input-group">
+<label>Username</label>
+
+<input
+type="text"
+name="username"
+placeholder="Enter Admin Username"
+required>
+
+</div>
+
+<div class="input-group">
+
+<label>Password</label>
+
+<input
+type="password"
+name="password"
+id="password"
+placeholder="Enter Password"
+required>
+
+<div class="show-password">
+
+<input
+type="checkbox"
+onclick="showPassword()">
+
+Show Password
+
+</div>
+
+</div>
+
+<button type="submit">
+Login
+</button>
+
+</form>
+
+<div class="footer">
+
+<p>
+Return to
+<a href="/">Home</a>
+</p>
+
+</div>
+
+</div>
+
+<script>
+
+function showPassword(){
+
+var x=document.getElementById("password");
+
+if(x.type==="password"){
+x.type="text";
+}
+else{
+x.type="password";
+}
+
+}
+
+</script>
+
+</body>
+</html>

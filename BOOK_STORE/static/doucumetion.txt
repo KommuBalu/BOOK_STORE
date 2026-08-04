@@ -1,0 +1,22 @@
+<button class="checkout">
+
+Proceed to Checkout
+
+</button>
+
+
+.checkout{
+    width:100%;
+    padding:15px;
+    margin-top:20px;
+    border:none;
+    background:#27ae60;
+    color:white;
+    font-size:18px;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+.checkout:hover{
+    background:#219150;
+}

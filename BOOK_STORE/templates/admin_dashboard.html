@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | BOOK STORE</title>
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial, Helvetica, sans-serif;
+        }
+
+        body{
+            display:flex;
+            background:#f4f6f9;
+        }
+
+        /* Sidebar */
+
+        .sidebar{
+            width:250px;
+            height:100vh;
+            background:#2c3e50;
+            color:white;
+            position:fixed;
+            left:0;
+            top:0;
+        }
+
+        .sidebar h2{
+            text-align:center;
+            padding:20px;
+            background:#1a252f;
+        }
+
+        .sidebar a{
+            display:block;
+            color:white;
+            text-decoration:none;
+            padding:15px 25px;
+            border-bottom:1px solid rgba(255,255,255,.1);
+        }
+
+        .sidebar a:hover{
+            background:#3498db;
+        }
+
+        /* Main */
+
+        .main{
+            margin-left:250px;
+            width:100%;
+            padding:30px;
+        }
+
+        .header{
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            margin-bottom:30px;
+        }
+
+        .header h1{
+            color:#2c3e50;
+        }
+
+        .logout{
+            background:#e74c3c;
+            color:white;
+            padding:10px 20px;
+            text-decoration:none;
+            border-radius:5px;
+        }
+
+        .logout:hover{
+            background:#c0392b;
+        }
+
+        .cards{
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+            gap:20px;
+        }
+
+        .card{
+            background:white;
+            padding:25px;
+            border-radius:10px;
+            box-shadow:0 5px 15px rgba(0,0,0,.1);
+            text-align:center;
+        }
+
+        .card h2{
+            font-size:35px;
+            color:#3498db;
+            margin-bottom:10px;
+        }
+
+        .card p{
+            font-size:18px;
+            color:#555;
+        }
+
+        .actions{
+            margin-top:40px;
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+            gap:20px;
+        }
+
+        .action-btn{
+            text-decoration:none;
+            background:#3498db;
+            color:white;
+            text-align:center;
+            padding:18px;
+            border-radius:8px;
+            font-size:18px;
+        }
+
+        .action-btn:hover{
+            background:#2980b9;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="sidebar">
+
+<h2>📚 BOOK STORE</h2>
+
+<a href="/admin/dashboard">🏠 Dashboard</a>
+
+<a href="/admin/addproducts">➕ Add Book</a>
+
+<a href="/admin/manageproducts">📖 Manage Books</a>
+
+<a href="/user/orders">🛒 Orders</a>
+
+<a href="/">🌐 Website</a>
+
+<a href="/admin/login">🚪 Logout</a>
+
+</div>
+
+<div class="main">
+
+<div class="header">
+
+<h1>Admin Dashboard</h1>
+
+<a href="/admin/login" class="logout">
+Logout
+</a>
+
+</div>
+
+<div class="cards">
+
+<div class="card">
+<h2>120</h2>
+<p>Total Books</p>
+</div>
+
+<div class="card">
+<h2>55</h2>
+<p>Total Users</p>
+</div>
+
+<div class="card">
+<h2>18</h2>
+<p>Total Orders</p>
+</div>
+
+<div class="card">
+<h2>₹75,000</h2>
+<p>Total Revenue</p>
+</div>
+
+</div>
+
+<div class="actions">
+
+<a href="/admin/addproducts" class="action-btn">
+➕ Add New Book
+</a>
+
+<a href="/admin/manageproducts" class="action-btn">
+📚 Manage Books
+</a>
+
+<a href="/user/orders" class="action-btn">
+🛒 View Orders
+</a>
+
+<a href="/" class="action-btn">
+🌍 Visit Website
+</a>
+
+</div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOOK_STORE | Home</title>
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial, Helvetica, sans-serif;
+        }
+
+        body{
+            background:#f4f4f4;
+        }
+
+        header{
+            background:#2c3e50;
+            color:white;
+            padding:15px 50px;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+        }
+
+        header h2{
+            color:#ffcc00;
+        }
+
+        nav a{
+            color:white;
+            text-decoration:none;
+            margin-left:20px;
+            font-weight:bold;
+        }
+
+        nav a:hover{
+            color:#ffcc00;
+        }
+
+        .hero{
+            height:500px;
+            background:linear-gradient(rgba(0,0,0,.5),rgba(0,0,0,.5)),
+            url("{{ url_for('static', filename='images/homeimage.jpg') }}");
+            background-size:cover;
+            background-position:center;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            color:white;
+            text-align:center;
+        }
+
+        .hero h1{
+            font-size:55px;
+            margin-bottom:20px;
+        }
+
+        .hero p{
+            font-size:20px;
+            margin-bottom:30px;
+        }
+
+        .btn{
+            display:inline-block;
+            background:#ff9800;
+            color:white;
+            padding:12px 30px;
+            border-radius:5px;
+            text-decoration:none;
+            font-size:18px;
+        }
+
+        .btn:hover{
+            background:#e68900;
+        }
+
+        .section-title{
+            text-align:center;
+            margin:50px 0 30px;
+            font-size:35px;
+            color:#333;
+        }
+
+        .books{
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+            gap:25px;
+            padding:0 60px 60px;
+        }
+
+        .card{
+            background:white;
+            border-radius:10px;
+            overflow:hidden;
+            box-shadow:0 0 10px rgba(0,0,0,.2);
+        }
+
+        .card img{
+            width:100%;
+            height:280px;
+            object-fit:cover;
+        }
+
+        .card-body{
+            padding:20px;
+        }
+
+        .card-body h3{
+            margin-bottom:10px;
+        }
+
+        .price{
+            color:green;
+            font-size:22px;
+            margin:15px 0;
+        }
+
+        .card button{
+            width:100%;
+            padding:12px;
+            border:none;
+            background:#3498db;
+            color:white;
+            cursor:pointer;
+            font-size:16px;
+        }
+
+        .card button:hover{
+            background:#2980b9;
+        }
+
+        footer{
+            background:#2c3e50;
+            color:white;
+            text-align:center;
+            padding:20px;
+        }
+    </style>
+
+</head>
+<body>
+
+<header>
+
+<h2>📚 BOOK STORE</h2>
+
+<nav>
+
+<a href="/">Home</a>
+
+<a href="/user/login">User Login</a>
+
+<a href="/user/signup">Register</a>
+
+<a href="/admin/login">Admin</a>
+
+<a href="/shopping/cart">Cart</a>
+
+</nav>
+
+</header>
+
+<section class="hero">
+
+<div>
+
+<h1>Welcome to BOOK STORE</h1>
+
+<p>Buy Your Favourite Books Online</p>
+
+<a href="/user/login" class="btn">Shop Now</a>
+
+</div>
+
+</section>
+
+<h2 class="section-title">Featured Books</h2>
+
+<section class="books">
+
+<div class="card">
+
+<img src="{{ url_for('static', filename='images/python.jpg') }}">
+
+<div class="card-body">
+
+<h3>Python Programming</h3>
+
+<p>Learn Python from Beginner to Advanced.</p>
+
+<div class="price">₹499</div>
+
+<button>Add to Cart</button>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<img src="{{ url_for('static', filename='images/flask.jpg') }}">
+
+<div class="card-body">
+
+<h3>Flask Development</h3>
+
+<p>Build Modern Flask Applications.</p>
+
+<div class="price">₹699</div>
+
+<button>Add to Cart</button>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<img src="{{ url_for('static', filename='images/sql.jpg') }}">
+
+<div class="card-body">
+
+<h3>SQL Database</h3>
+
+<p>Master SQL from Scratch.</p>
+
+<div class="price">₹599</div>
+
+<button>Add to Cart</button>
+
+</div>
+
+</div>
+
+</section>
+
+<footer>
+
+<h3>BOOK STORE © 2026</h3>
+
+<p>Developed using Flask + SQLite</p>
+
+</footer>
+
+</body>
+</html>

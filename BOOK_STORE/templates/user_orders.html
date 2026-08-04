@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Orders | BOOK STORE</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+    background:#f4f6f9;
+}
+
+header{
+    background:#2c3e50;
+    color:white;
+    padding:18px 40px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+header h2{
+    color:#f1c40f;
+}
+
+header a{
+    color:white;
+    text-decoration:none;
+    margin-left:20px;
+}
+
+.container{
+    width:95%;
+    margin:40px auto;
+}
+
+.container h1{
+    color:#2c3e50;
+    margin-bottom:25px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    background:white;
+    box-shadow:0 5px 15px rgba(0,0,0,.15);
+}
+
+th{
+    background:#3498db;
+    color:white;
+    padding:15px;
+}
+
+td{
+    padding:15px;
+    text-align:center;
+    border-bottom:1px solid #ddd;
+}
+
+tr:hover{
+    background:#f9f9f9;
+}
+
+.status{
+    padding:8px 15px;
+    border-radius:20px;
+    color:white;
+    font-weight:bold;
+}
+
+.pending{
+    background:#f39c12;
+}
+
+.shipped{
+    background:#2980b9;
+}
+
+.delivered{
+    background:#27ae60;
+}
+
+.btn{
+    text-decoration:none;
+    color:white;
+    background:#3498db;
+    padding:8px 15px;
+    border-radius:5px;
+    margin:2px;
+    display:inline-block;
+}
+
+.btn:hover{
+    background:#21618c;
+}
+
+.back{
+    margin-top:25px;
+}
+
+.back a{
+    text-decoration:none;
+    color:#3498db;
+    font-weight:bold;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h2>📚 BOOK STORE</h2>
+
+<div>
+
+<a href="/">Home</a>
+
+<a href="/shopping/cart">Cart</a>
+
+<a href="/user/login">Logout</a>
+
+</div>
+
+</header>
+
+<div class="container">
+
+<h1>📦 My Orders</h1>
+
+<table>
+
+<tr>
+
+<th>Order ID</th>
+
+<th>Order Date</th>
+
+<th>Books</th>
+
+<th>Total</th>
+
+<th>Status</th>
+
+<th>Details</th>
+
+<th>Invoice</th>
+
+</tr>
+
+<tr>
+
+<td>#1001</td>
+
+<td>04-Aug-2026</td>
+
+<td>Python Programming</td>
+
+<td>₹499</td>
+
+<td>
+
+<span class="status pending">
+
+Pending
+
+</span>
+
+</td>
+
+<td>
+
+<a href="#" class="btn">
+
+View
+
+</a>
+
+</td>
+
+<td>
+
+<a href="#" class="btn">
+
+Download
+
+</a>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>#1002</td>
+
+<td>03-Aug-2026</td>
+
+<td>Flask Development</td>
+
+<td>₹699</td>
+
+<td>
+
+<span class="status shipped">
+
+Shipped
+
+</span>
+
+</td>
+
+<td>
+
+<a href="#" class="btn">
+
+View
+
+</a>
+
+</td>
+
+<td>
+
+<a href="#" class="btn">
+
+Download
+
+</a>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>#1003</td>
+
+<td>01-Aug-2026</td>
+
+<td>SQL Database</td>
+
+<td>₹599</td>
+
+<td>
+
+<span class="status delivered">
+
+Delivered
+
+</span>
+
+</td>
+
+<td>
+
+<a href="#" class="btn">
+
+View
+
+</a>
+
+</td>
+
+<td>
+
+<a href="#" class="btn">
+
+Download
+
+</a>
+
+</td>
+
+</tr>
+
+</table>
+
+<div class="back">
+
+<a href="/">⬅ Continue Shopping</a>
+
+</div>
+
+</div>
+
+</body>
+</html>
