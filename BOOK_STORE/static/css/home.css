@@ -1,0 +1,382 @@
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#f5f7fb;
+    color:#333;
+}
+
+/* ===========================
+HEADER
+=========================== */
+
+header{
+    position:sticky;
+    top:0;
+    z-index:1000;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:18px 70px;
+    background:#1f2937;
+    box-shadow:0 5px 15px rgba(0,0,0,.2);
+}
+
+header h2{
+    color:#ffc107;
+    font-size:32px;
+    font-weight:bold;
+}
+
+nav{
+    display:flex;
+    gap:25px;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    font-size:17px;
+    font-weight:bold;
+    transition:.3s;
+}
+
+nav a:hover{
+    color:#ffc107;
+}
+
+/* ===========================
+HERO SECTION
+=========================== */
+
+.hero{
+    height:750px;
+
+    background:
+    linear-gradient(rgba(0,0,0,.15),
+    rgba(0,0,0,.15)),
+    url("../images/home.jpg");
+
+    background-size:cover;
+    background-position:center;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+
+    color:white;
+}
+
+.hero-content{
+    width:80%;
+}
+
+.hero h1{
+    font-size:60px;
+    margin-bottom:15px;
+}
+
+.hero p{
+    font-size:22px;
+    margin-bottom:35px;
+}
+
+.btn{
+    display:inline-block;
+    padding:15px 40px;
+    background:#ff9800;
+    color:white;
+    text-decoration:none;
+    font-size:20px;
+    border-radius:8px;
+    transition:.3s;
+}
+
+.btn:hover{
+    background:#ff6f00;
+    transform:translateY(-3px);
+}
+
+/* ===========================
+SECTION TITLE
+=========================== */
+
+.section-title{
+    text-align:center;
+    font-size:38px;
+    margin:60px 0 40px;
+    color:#1f2937;
+}
+
+/* ===========================
+BOOK GRID
+=========================== */
+
+.books{
+
+    width:95%;
+    margin:auto;
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:30px;
+
+    padding-bottom:70px;
+
+}
+
+/* ===========================
+BOOK CARD
+=========================== */
+
+.card{
+
+    background:white;
+
+    border-radius:15px;
+
+    overflow:hidden;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.15);
+
+    transition:.35s;
+
+}
+
+.card:hover{
+
+    transform:translateY(-10px);
+
+    box-shadow:0 20px 35px rgba(0,0,0,.25);
+
+}
+
+.card img{
+
+    width:100%;
+
+    height:270px;
+
+    object-fit:cover;
+
+}
+
+.card-body{
+
+    padding:20px;
+
+}
+
+.card-body h3{
+
+    font-size:22px;
+
+    margin-bottom:10px;
+
+    color:#2c3e50;
+
+}
+
+.card-body p{
+
+    color:#666;
+
+    line-height:25px;
+
+    min-height:60px;
+
+}
+
+.price{
+
+    color:#27ae60;
+
+    font-size:25px;
+
+    font-weight:bold;
+
+    margin:20px 0;
+
+}
+
+/* ===========================
+BUTTON
+=========================== */
+
+.card button{
+
+    width:100%;
+
+    padding:14px;
+
+    background:#0d6efd;
+
+    border:none;
+
+    border-radius:8px;
+
+    color:white;
+
+    font-size:18px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.card button:hover{
+
+    background:#084298;
+
+}
+
+/* ===========================
+FOOTER
+=========================== */
+
+footer{
+
+    background:#1f2937;
+
+    color:white;
+
+    text-align:center;
+
+    padding:35px;
+
+}
+
+footer h3{
+
+    margin-bottom:10px;
+
+}
+
+footer p{
+
+    color:#ccc;
+
+}
+
+/* ===========================
+RESPONSIVE
+=========================== */
+
+@media(max-width:1200px){
+
+.books{
+
+grid-template-columns:repeat(3,1fr);
+
+}
+
+}
+
+@media(max-width:900px){
+
+header{
+
+flex-direction:column;
+
+gap:20px;
+
+padding:20px;
+
+}
+
+nav{
+
+flex-wrap:wrap;
+
+justify-content:center;
+
+}
+
+.hero{
+
+height:350px;
+
+}
+
+.hero h1{
+
+font-size:42px;
+
+}
+
+.hero p{
+
+font-size:18px;
+
+}
+
+.books{
+
+grid-template-columns:repeat(2,1fr);
+
+}
+
+}
+
+@media(max-width:600px){
+
+.books{
+
+grid-template-columns:1fr;
+
+}
+
+.hero{
+
+height:280px;
+
+padding:20px;
+
+}
+
+.hero h1{
+
+font-size:32px;
+
+}
+
+.hero p{
+
+font-size:16px;
+
+}
+
+.btn{
+
+padding:12px 25px;
+
+font-size:17px;
+
+}
+
+header h2{
+
+font-size:26px;
+
+}
+
+nav{
+
+gap:15px;
+
+}
+
+}
