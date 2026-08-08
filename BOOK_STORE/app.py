@@ -273,33 +273,6 @@ def clear_cart():
 
     return redirect(url_for("shopping_cart"))
 
-# # ===========================
-# # PAYMENT PAGE
-# # ===========================
-
-# @app.route("/payment")
-# def payment():
-
-#     cart = session.get("cart", [])
-
-#     total = 0
-
-#     for item in cart:
-#         total += int(item["price"])
-
-#     payment = client.order.create({
-#         "amount": total * 100,
-#         "currency": "INR",
-#         "payment_capture": 1
-#     })
-
-#     return render_template(
-#         "payment.html",
-#         amount=total,
-#         order_id=payment["id"],
-#         razorpay_key=RAZORPAY_KEY_ID
-#     )
-
 
 # ===========================
 # PAYMENT PAGE
