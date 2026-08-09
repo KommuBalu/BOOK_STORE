@@ -12,267 +12,190 @@
     <link rel="stylesheet"
           href="{{ url_for('static', filename='css/home.css') }}">
 
+    <style>
+
+        .books-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            padding: 40px 20px;
+        }
+
+        .book-card {
+            width: 280px;
+            padding: 20px;
+            border-radius: 15px;
+            background: white;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+            text-align: center;
+        }
+
+        .book-card img {
+            width: 180px;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .book-card h3 {
+            margin: 15px 0 10px;
+        }
+
+        .price {
+            font-size: 20px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .cart-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        .cart-btn:hover {
+            background: #0056b3;
+        }
+
+    </style>
+
 </head>
 
 <body>
 
-<!-- ================= HEADER ================= -->
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
 
-<header>
+    <header>
 
-    <h2>📚 BOOK STORE</h2>
+        <h2>📚 BOOK STORE</h2>
 
-    <nav>
+        <nav>
 
-        <a href="/">Home</a>
+            <a href="/">Home</a>
 
-        <a href="/user/login">User Login</a>
+            <a href="/user/login">User Login</a>
 
-        <a href="/user/signup">Register</a>
+            <a href="/user/signup">Register</a>
 
-        <a href="/admin/login">Admin</a>
+            <a href="/admin/login">Admin</a>
 
-        <a href="/shopping/cart">Cart</a>
+            <a href="/shopping/cart">Cart</a>
 
-    </nav>
+        </nav>
 
-</header>
-
-<!-- ================= HERO ================= -->
-
-<section class="hero">
-
-    <div class="hero-content">
+    </header>
 
 
+    <!-- =====================================================
+         HERO
+    ====================================================== -->
 
-        <a href="/user/login" class="btn">
-            Shop Now
-        </a>
+    <section class="hero">
 
-    </div>
+        <div class="hero-content">
 
-</section>
+            <h1>Welcome to BOOK STORE</h1>
 
-<!-- ================= BOOKS ================= -->
+            <p>Learn Python, Flask and Web Development</p>
 
-<h2 class="section-title">
-    Featured Books
-</h2>
+            <a href="#books" class="btn">
+                Shop Now
+            </a>
 
-<section class="books">
+        </div>
 
-<!-- ================================================= -->
-<!-- Paste all 15 Book Cards here                      -->
-<!-- Python, Flask, SQL, Django ... Git & GitHub       -->
-<!-- ================================================= -->
+    </section>
 
 
+    <!-- =====================================================
+         BOOKS
+    ====================================================== -->
 
-<!-- 1 -->
-<div class="card">
-<img src="{{ url_for('static', filename='images/Python.png') }}">
-<div class="card-body">
-<h3>Python Programming</h3>
-<p>Learn Python from Beginner to Advanced.</p>
-<div class="price">₹499</div>
-<a href="{{ url_for('add_cart', book_name='Python Programming', price=499) }}">
-<button>Add to Cart</button>
-</a>
-</div>
-</div>
+    <section id="books">
 
-<!-- 2 -->
-<div class="card">
-<img src="{{ url_for('static', filename='images/FLASK.png') }}">
-<div class="card-body">
-<h3>Flask Development</h3>
-<p>Build Modern Flask Applications.</p>
-<div class="price">₹699</div>
-<a href="{{ url_for('add_cart', book_name='Flask Development', price=699) }}">
-<button>Add to Cart</button>
-</a>
-</div>
-</div>
+        <h2 style="text-align:center; margin-top:40px;">
+            📚 Our Books
+        </h2>
 
-<!-- 3 -->
-<div class="card">
-<img src="{{ url_for('static', filename='images/SQL.png') }}">
-<div class="card-body">
-<h3>SQL Database</h3>
-<p>Master SQL from Scratch.</p>
-<div class="price">₹599</div>
-<a href="{{ url_for('add_cart', book_name='SQL Database', price=599) }}">
-<button>Add to Cart</button>
-</a>
-</div>
-</div>
+        <div class="books-container">
 
-<!-- 4 -->
-<div class="card">
-<img src="{{ url_for('static', filename='images/Python.png') }}">
-<div class="card-body">
-<h3>Django Development</h3>
-<p>Create powerful web applications.</p>
-<div class="price">₹799</div>
-<a href="{{ url_for('add_cart', book_name='Django Development', price=799) }}">
-<button>Add to Cart</button>
-</a>
-</div>
-</div>
 
-<!-- 5 -->
-<div class="card">
-<img src="{{ url_for('static', filename='images/SQL.png') }}">
-<div class="card-body">
-<h3>Data Structures</h3>
-<p>Master DSA with coding examples.</p>
-<div class="price">₹649</div>
-<a href="{{ url_for('add_cart', book_name='Data Structures', price=649) }}">
-<button>Add to Cart</button>
-</a>
-</div>
-</div>
+            <!-- =================================================
+                 PYTHON BOOK
+            ================================================== -->
 
-<!-- 6 -->
-<div class="card">
-<img src="{{ url_for('static', filename='images/Python.png') }}">
-<div class="card-body">
-<h3>Machine Learning</h3>
-<p>Introduction to Artificial Intelligence.</p>
-<div class="price">₹899</div>
-<a href="{{ url_for('add_cart', book_name='Machine Learning', price=899) }}">
-<button>Add to Cart</button>
-</a>
-</div>
-</div>
+            <div class="book-card">
 
-<!-- 7 -->
-<div class="card">
-<img src="{{ url_for('static', filename='images/FLASK.png') }}">
-<div class="card-body">
-<h3>HTML & CSS</h3>
-<p>Design responsive modern websites.</p>
-<div class="price">₹399</div>
-<a href="{{ url_for('add_cart', book_name='HTML & CSS', price=399) }}">
-<button>Add to Cart</button>
-</a>
-</div>
-</div>
+                <img
+                    src="{{ url_for('static', filename='images/python.png') }}"
+                    alt="Python Book"
+                >
 
-<!-- 8 -->
-<div class="card">
-<img src="{{ url_for('static', filename='images/SQL.png') }}">
-<div class="card-body">
-<h3>Java Programming</h3>
-<p>Complete Java programming guide.</p>
-<div class="price">₹599</div>
-<a href="{{ url_for('add_cart', book_name='Java Programming', price=599) }}">
-<button>Add to Cart</button>
-</a>
-</div>
-</div>
+                <h3>Python Programming</h3>
 
-<!-- 9 -->
-<div class="card">
-<img src="{{ url_for('static', filename='images/Python.png') }}">
-<div class="card-body">
-<h3>C Programming</h3>
-<p>Strong programming fundamentals.</p>
-<div class="price">₹349</div>
-<a href="{{ url_for('add_cart', book_name='C Programming', price=349) }}">
-<button>Add to Cart</button>
-</a>
-</div>
-</div>
+                <p>
+                    Learn Python programming from beginner
+                    to advanced level.
+                </p>
 
-<!-- 10 -->
-<div class="card">
-<img src="{{ url_for('static', filename='images/FLASK.png') }}">
-<div class="card-body">
-<h3>JavaScript</h3>
-<p>Interactive web development.</p>
-<div class="price">₹549</div>
-<a href="{{ url_for('add_cart', book_name='JavaScript', price=549) }}">
-<button>Add to Cart</button>
-</a>
-</div>
-</div>
+                <div class="price">
+                    ₹500
+                </div>
 
-<!-- 11 -->
-<div class="card">
-<img src="{{ url_for('static', filename='images/SQL.png') }}">
-<div class="card-body">
-<h3>React JS</h3>
-<p>Build fast frontend applications.</p>
-<div class="price">₹799</div>
-<a href="{{ url_for('add_cart', book_name='React JS', price=799) }}">
-<button>Add to Cart</button>
-</a>
-</div>
-</div>
+                <a
+                    href="{{ url_for('shopping.add_cart', book_name='Python Programming', price=500) }}"
+                    class="cart-btn"
+                >
+                    🛒 Add to Cart
+                </a>
 
-<!-- 12 -->
-<div class="card">
-<img src="{{ url_for('static', filename='images/Python.png') }}">
-<div class="card-body">
-<h3>Bootstrap</h3>
-<p>Create responsive websites quickly.</p>
-<div class="price">₹299</div>
-<a href="{{ url_for('add_cart', book_name='Bootstrap', price=299) }}">
-<button>Add to Cart</button>
-</a>
-</div>
-</div>
+            </div>
 
-<!-- 13 -->
-<div class="card">
-<img src="{{ url_for('static', filename='images/FLASK.png') }}">
-<div class="card-body">
-<h3>Cyber Security</h3>
-<p>Protect systems from cyber threats.</p>
-<div class="price">₹999</div>
-<a href="{{ url_for('add_cart', book_name='Cyber Security', price=999) }}">
-<button>Add to Cart</button>
-</a>
-</div>
-</div>
 
-<!-- 14 -->
-<div class="card">
-<img src="{{ url_for('static', filename='images/SQL.png') }}">
-<div class="card-body">
-<h3>AWS Cloud</h3>
-<p>Master cloud computing with AWS.</p>
-<div class="price">₹1099</div>
-<a href="{{ url_for('add_cart', book_name='AWS Cloud', price=1099) }}">
-<button>Add to Cart</button>
-</a>
-</div>
-</div>
+            <!-- =================================================
+                 FLASK BOOK
+            ================================================== -->
 
-<!-- 15 -->
-<div class="card">
-<img src="{{ url_for('static', filename='images/Python.png') }}">
-<div class="card-body">
-<h3>Git & GitHub</h3>
-<p>Version control for modern developers.</p>
-<div class="price">₹499</div>
-<a href="{{ url_for('add_cart', book_name='Git & GitHub', price=499) }}">
-<button>Add to Cart</button>
-</a>
-</div>
-</div>
+            <div class="book-card">
 
-</section>
+                <img
+                    src="{{ url_for('static', filename='images/FLASK.png') }}"
+                    alt="Flask Book"
+                >
 
-<footer>
+                <h3>Flask Web Development</h3>
 
-<h3>📚 BOOK STORE © 2026</h3>
+                <p>
+                    Learn Flask and build powerful
+                    Python web applications.
+                </p>
 
-<p>Developed with Flask • SQLite • Razorpay • Gmail OTP</p>
+                <div class="price">
+                    ₹400
+                </div>
 
-</footer>
+                <a
+                    href="{{ url_for('shopping.add_cart', book_name='Flask Web Development', price=400) }}"
+                    class="cart-btn"
+                >
+                    🛒 Add to Cart
+                </a>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
 
 </body>
+
 </html>

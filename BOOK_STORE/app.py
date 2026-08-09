@@ -1,38 +1,31 @@
 from flask import Flask, render_template, request, redirect, url_for, session
-from models import User, Admin, Book, Cart, Order
-from config import Config
-from database import db
 from flask_mail import Mail, Message
-import random
-import razorpay
-from flask import Flask
-from config import Config
-
-
 from dotenv import load_dotenv
+from database import db
+from config import Config
+from shopping import shopping_bp
+
+import random
 import os
+import razorpay
 
 load_dotenv()
 
 
-
-
-
-# Create Flask app FIRST
 app = Flask(__name__)
+app.config.from_object(Config)
+app.register_blueprint(shopping_bp)
 
-app.secret_key = os.getenv("SECRET_KEY")
+# Database
+db.init_app(app)
 
-# Gmail
-app.config["MAIL_SERVER"] = os.getenv("MAIL_SERVER")
-app.config["MAIL_PORT"] = int(os.getenv("MAIL_PORT"))
-app.config["MAIL_USE_TLS"] = os.getenv("MAIL_USE_TLS") == "True"
-app.config["MAIL_USERNAME"] = os.getenv("MAIL_USERNAME")
-app.config["MAIL_PASSWORD"] = os.getenv("MAIL_PASSWORD")
-
+# Mail
 mail = Mail(app)
 
-# Razorpay
+# ==========================================================
+# RAZORPAY
+# ==========================================================
+
 RAZORPAY_KEY_ID = os.getenv("RAZORPAY_KEY_ID")
 RAZORPAY_KEY_SECRET = os.getenv("RAZORPAY_KEY_SECRET")
 
@@ -40,22 +33,18 @@ client = razorpay.Client(
     auth=(RAZORPAY_KEY_ID, RAZORPAY_KEY_SECRET)
 )
 
-
-# ===========================
+# ==========================================================
 # HOME
-# ===========================
+# ==========================================================
 
 @app.route("/")
 def home():
     return render_template("home.html")
 
 
-# ===========================
+# ==========================================================
 # USER LOGIN
-# ===========================
-
-
-
+# ==========================================================
 
 @app.route("/user/login", methods=["GET", "POST"])
 def user_login():
@@ -98,14 +87,14 @@ BOOK STORE
             return redirect(url_for("login_otp"))
 
         except Exception as e:
-            return f"Mail Error : {e}"
+            return f"Mail Error: {e}"
 
     return render_template("user_login.html")
 
 
-# ===========================
+# ==========================================================
 # USER SIGNUP
-# ===========================
+# ==========================================================
 
 @app.route("/user/signup", methods=["GET", "POST"])
 def user_signup():
@@ -131,9 +120,9 @@ def user_signup():
     return render_template("user_signup.html")
 
 
-# ===========================
+# ==========================================================
 # ADMIN LOGIN
-# ===========================
+# ==========================================================
 
 @app.route("/admin/login", methods=["GET", "POST"])
 def admin_login():
@@ -151,128 +140,13 @@ def admin_login():
     return render_template("admin_login.html")
 
 
-# ===========================
+# ==========================================================
 # ADMIN DASHBOARD
-# ===========================
+# ==========================================================
 
 @app.route("/admin/dashboard")
 def admin_dashboard():
     return render_template("admin_dashboard.html")
-
-
-# ===========================
-# ADD PRODUCT
-# ===========================
-
-@app.route("/admin/addproducts", methods=["GET", "POST"])
-def add_products():
-
-    if request.method == "POST":
-
-        title = request.form.get("title")
-        author = request.form.get("author")
-        category = request.form.get("category")
-        price = request.form.get("price")
-        stock = request.form.get("stock")
-        description = request.form.get("description")
-
-        image = request.files.get("image")
-
-        print(title)
-        print(author)
-        print(category)
-        print(price)
-        print(stock)
-        print(description)
-
-        if image:
-            print(image.filename)
-
-        return redirect(url_for("manage_products"))
-
-    return render_template("admin_addproducts.html")
-
-
-# ===========================
-# MANAGE PRODUCTS
-# ===========================
-
-@app.route("/admin/manageproducts")
-def manage_products():
-    return render_template("admin_manageproducts.html")
-
-
-# ===========================
-# ADD TO CART
-# ===========================
-
-@app.route("/add/cart")
-def add_cart():
-
-    book_name = request.args.get("book_name")
-    price = request.args.get("price")
-
-    cart = session.get("cart", [])
-
-    cart.append({
-        "book_name": book_name,
-        "price": price
-    })
-
-    session["cart"] = cart
-
-    return redirect(url_for("shopping_cart"))
-
-
-# ===========================
-# SHOPPING CART
-# ===========================
-
-@app.route("/shopping/cart")
-def shopping_cart():
-
-    cart = session.get("cart", [])
-
-    total = 0
-
-    for item in cart:
-        total += int(item["price"])
-
-    return render_template(
-        "shopping_cart.html",
-        cart=cart,
-        total=total
-    )
-
-
-# ===========================
-# REMOVE CART ITEM
-# ===========================
-
-@app.route("/remove/cart/<int:index>")
-def remove_cart(index):
-
-    cart = session.get("cart", [])
-
-    if 0 <= index < len(cart):
-        cart.pop(index)
-
-    session["cart"] = cart
-
-    return redirect(url_for("shopping_cart"))
-
-
-# ===========================
-# CLEAR CART
-# ===========================
-
-@app.route("/clear/cart")
-def clear_cart():
-
-    session["cart"] = []
-
-    return redirect(url_for("shopping_cart"))
-
 
 # ===========================
 # PAYMENT PAGE
@@ -283,67 +157,67 @@ def payment():
 
     cart = session.get("cart", [])
 
+    if not cart:
+        return redirect(url_for("shopping_cart"))
+
     total = 0
 
     for item in cart:
-        total += int(item["price"])
 
-    payment = client.order.create({
-        "amount": total * 100,
-        "currency": "INR",
-        "payment_capture": 1
-    })
+        # Support old cart items
+        quantity = int(item.get("quantity", 1))
+        price = float(item["price"])
 
-    return render_template(
-        "payment.html",
-        amount=total,
-        order_id=payment["id"],
-        razorpay_key=RAZORPAY_KEY_ID
-    )
+        item_total = price * quantity
 
+        total += item_total
 
-# ===========================
-# PAYMENT SUCCESS
-# ===========================
+    print("PAYMENT CART:", cart)
+    print("PAYMENT TOTAL:", total)
 
-@app.route("/payment/success", methods=["POST"])
-def payment_success():
+    if total <= 0:
+        return "Cart total is ₹0. Please add a book with a valid price."
 
-    payment_id = request.form.get("razorpay_payment_id")
-    order_id = request.form.get("razorpay_order_id")
-    signature = request.form.get("razorpay_signature")
+    try:
 
-    print("Payment ID :", payment_id)
-    print("Order ID   :", order_id)
-    print("Signature  :", signature)
+        payment = client.order.create({
 
-    # Here you can verify Razorpay signature
-    # client.utility.verify_payment_signature(...)
+            "amount": int(total * 100),
 
-    # Send OTP after successful payment
-    return redirect(url_for("send_payment_otp"))
+            "currency": "INR",
 
-# ===========================
-# ORDER SUCCESS
-# ===========================
+            "payment_capture": 1
 
-@app.route("/order/success")
-def order_success():
-    return render_template("order_success.html")
+        })
 
+        print("RAZORPAY ORDER:", payment["id"])
 
-# ===========================
-# USER ORDERS
-# ===========================
+        return render_template(
 
-@app.route("/user/orders")
-def user_orders():
-    return render_template("user_orders.html")
+            "payment.html",
+
+            amount=total,
+
+            order_id=payment["id"],
+
+            razorpay_key=RAZORPAY_KEY_ID
+
+        )
+
+    except Exception as e:
+
+        print("RAZORPAY ERROR:", e)
+
+        return f"Razorpay Error: {e}"
 
 
-# ===========================
+
+
+
+
+# ==========================================================
 # FORGOT PASSWORD
-# ===========================
+# ==========================================================
 
 @app.route("/forgot/password", methods=["GET", "POST"])
 def forgot_password():
@@ -352,16 +226,16 @@ def forgot_password():
 
         email = request.form.get("email")
 
-        print(email)
+        print("Forgot password email:", email)
 
         return redirect(url_for("otp_verify"))
 
     return render_template("forgot_password.html")
 
 
-# ===========================
+# ==========================================================
 # OTP VERIFY
-# ===========================
+# ==========================================================
 
 @app.route("/otp/verify", methods=["GET", "POST"])
 def otp_verify():
@@ -370,12 +244,16 @@ def otp_verify():
 
         otp = request.form.get("otp")
 
-        print("OTP :", otp)
+        print("OTP:", otp)
 
         return redirect(url_for("update_user"))
 
     return render_template("otpverify.html")
 
+
+# ==========================================================
+# LOGIN OTP
+# ==========================================================
 
 @app.route("/login/otp", methods=["GET", "POST"])
 def login_otp():
@@ -386,7 +264,7 @@ def login_otp():
 
         if entered_otp == session.get("login_otp"):
 
-            session["user"] = session["login_email"]
+            session["user"] = session.get("login_email")
 
             session.pop("login_otp", None)
 
@@ -398,9 +276,9 @@ def login_otp():
     return render_template("login_otp.html")
 
 
-# ===========================
+# ==========================================================
 # UPDATE PROFILE
-# ===========================
+# ==========================================================
 
 @app.route("/update/profile", methods=["GET", "POST"])
 def update_user():
@@ -413,20 +291,20 @@ def update_user():
         mobile = request.form.get("mobile")
         password = request.form.get("password")
 
-        print(fullname)
-        print(username)
-        print(email)
-        print(mobile)
-        print(password)
+        print("Full Name:", fullname)
+        print("Username:", username)
+        print("Email:", email)
+        print("Mobile:", mobile)
+        print("Password:", password)
 
         return redirect(url_for("home"))
 
     return render_template("update_user.html")
 
 
-# ===========================
+# ==========================================================
 # LOGOUT
-# ===========================
+# ==========================================================
 
 @app.route("/logout")
 def logout():
@@ -436,11 +314,19 @@ def logout():
     return redirect(url_for("home"))
 
 
-# ===========================
+# ==========================================================
+# CREATE DATABASE
+# ==========================================================
+
+with app.app_context():
+    db.create_all()
+
+
+# ==========================================================
 # RUN SERVER
-# ===========================
+# ==========================================================
 
 if __name__ == "__main__":
-    with app.app_context():
-        db.create_all()
     app.run(debug=True)
+
+
