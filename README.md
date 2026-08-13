@@ -1,7 +1,4 @@
-   📚 BOOK STORE PROJECT REVIEW
-Project Name
-
-BOOK STORE – Online Book Shopping System
+📚BOOK STORE – Online Book Shopping System
 
 🎯 Project Objective
 
